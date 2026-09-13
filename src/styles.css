@@ -385,11 +385,16 @@ h1 {
   width: 42px;
   height: 42px;
   border-radius: 12px;
-  background: linear-gradient(180deg, #edf7ff, #dfeefe);
+  background: linear-gradient(180deg, #01182c, #01182c);
   display: grid;
   place-items: center;
-  color: var(--primary-2);
+  color: #ffffff;
   margin-bottom: 18px;
+}
+
+.service-icon svg {
+  color: #ffffff;
+  stroke: #ffffff;
 }
 
 .service-card h3 {
