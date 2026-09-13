@@ -62,11 +62,37 @@ const steps = [
   { title: 'Final Quality Check & Support', text: 'We test every repair, review the finished result, and leave you with total confidence in the service delivered.', tag: 'Step 04', icon: 'bolt' }
 ];
 
-const projects = [
-  { title: 'Bathroom Remodel', badge: 'Bathroom', image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=900&q=80' },
-  { title: 'Kitchen Refresh', badge: 'Kitchen', image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=80' },
-  { title: 'Plumbing Upgrade', badge: 'Plumbing', image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80' },
-  { title: 'Interior Renovation', badge: 'Remodel', image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80' }
+const filterTabs = ['All Works', 'Clog Cleaning', 'Installation', 'Kitchen Plumbing', 'Repair'];
+
+const projectsRow1 = [
+  { id: 'r1-1', type: 'image', image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80', alt: 'Kitchen Sink' },
+  { id: 'r1-2', type: 'image', image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80', alt: 'Plumbing Valves' },
+  { id: 'r1-3', type: 'image', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80', alt: 'Modern Living Room' },
+  { id: 'r1-4', type: 'image', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80', alt: 'Modern Kitchen' },
+  { id: 'r1-5', type: 'image', image: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=600&q=80', alt: 'Under Sink Plumbing' },
+  { id: 'r1-6', type: 'image', image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80', alt: 'Plumbing Valves' },
+  { id: 'r1-7', type: 'image', image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80', alt: 'Interior' }
+];
+
+const projectsRow2 = [
+  { id: 'r2-1', type: 'image', image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80', alt: 'Electrical Panel' },
+  { id: 'r2-2', type: 'blue', category: 'Installation, Kitchen Plumbing', title: 'Kitchen Plumbing' },
+  { id: 'r2-3', type: 'image', image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=600&q=80', alt: 'Kitchen Island' },
+  { 
+    id: 'r2-4', 
+    type: 'info', 
+    heading: 'Over 15+ Years Experience, Our Team Provides Top-Quality Services', 
+    image: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=400&q=80',
+    stats: [
+      { num: '15+', label: 'Experience' },
+      { num: '1500+', label: 'Completed' },
+      { num: '98%+', label: 'Satisfaction' },
+      { num: '24/7', label: 'Support' }
+    ]
+  },
+  { id: 'r2-5', type: 'image', image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80', alt: 'Electrician' },
+  { id: 'r2-6', type: 'blue', category: 'Installation, Kitchen Plumbing', title: 'Kitchen Plumbing' },
+  { id: 'r2-7', type: 'image', image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80', alt: 'Interior' }
 ];
 
 const testimonials = [
@@ -85,7 +111,53 @@ function SectionBadge({ text, icon = 'wrench' }) {
   );
 }
 
+function ScriptText({ children }) {
+  return React.createElement('span', { className: 'highlight-script' }, children);
+}
+
+function renderPortfolioCard(item) {
+  if (item.type === 'blue') {
+    return React.createElement(
+      'div',
+      { className: 'portfolio-card card-blue', key: item.id },
+      React.createElement('span', { className: 'card-category' }, item.category),
+      React.createElement('h3', { className: 'card-title' }, item.title)
+    );
+  }
+  if (item.type === 'info') {
+    return React.createElement(
+      'div',
+      { className: 'portfolio-card card-info', key: item.id },
+      React.createElement(
+        'div',
+        { className: 'info-top' },
+        React.createElement('div', { className: 'info-text' }, React.createElement('p', null, item.heading)),
+        React.createElement('div', { className: 'info-img' }, React.createElement('img', { src: item.image, alt: 'Technician' }))
+      ),
+      React.createElement(
+        'div',
+        { className: 'info-stats-grid' },
+        item.stats.map(function (st, idx) {
+          return React.createElement(
+            'div',
+            { className: 'info-stat-item', key: idx },
+            React.createElement('strong', null, st.num),
+            React.createElement('span', null, st.label)
+          );
+        })
+      )
+    );
+  }
+  return React.createElement(
+    'div',
+    { className: 'portfolio-card card-image', key: item.id },
+    React.createElement('img', { src: item.image, alt: item.alt })
+  );
+}
+
 function App() {
+  const [activeFilter, setActiveFilter] = React.useState('All Works');
+
   return React.createElement(
     'div',
     { className: 'page-shell' },
@@ -179,7 +251,7 @@ function App() {
             'h2',
             null,
             'Our Expertise: ',
-            React.createElement('span', { className: 'highlight-script' }, 'Quality'),
+            React.createElement(ScriptText, null, 'Quality'),
             ' Handyman Solutions'
           ),
           React.createElement('p', null, 'At Quick Replace, we provide comprehensive property maintenance and emergency trade solutions. From minor repairs to emergency make-safe works, our licensed multi-trade specialists are on call 24/7.')
@@ -224,7 +296,13 @@ function App() {
           'div',
           { className: 'section-title' },
           React.createElement(SectionBadge, { text: 'How It Works', icon: 'bolt' }),
-          React.createElement('h2', null, 'How It Works: Seamless Service in 4 Simple Steps')
+          React.createElement(
+            'h2',
+            null,
+            'How It Works: ',
+            React.createElement(ScriptText, null, 'Seamless Service'),
+            ' in 4 Simple Steps'
+          )
         ),
         React.createElement(
           'div',
@@ -257,7 +335,20 @@ function App() {
           React.createElement('h2', null, 'With over 15+ years of experience, our team provides top-quality services'),
           React.createElement('p', null, 'From routine maintenance and repairs to urgent property support, we bring experience, precision, and customer-first care to every task.'),
           React.createElement('p', null, 'We pride ourselves on a smooth process, clear communication, and dependable workmanship that helps homeowners and businesses keep operations running safely.'),
-          React.createElement('button', { className: 'primary-btn', type: 'button' }, 'About us')
+          React.createElement(
+            'button',
+            { className: 'outline-btn', type: 'button' },
+            React.createElement(
+              'span',
+              { className: 'btn-icon-circle' },
+              React.createElement(
+                'svg',
+                { viewBox: '0 0 24 24', width: '14', height: '14', fill: 'none', stroke: '#3e6bf3', strokeWidth: '2.5', strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': 'true' },
+                React.createElement('path', { d: 'M5 12h14M12 5l7 7-7 7' })
+              )
+            ),
+            React.createElement('span', null, 'About us')
+          )
         ),
         React.createElement(
           'div',
@@ -271,33 +362,33 @@ function App() {
         React.createElement(
           'div',
           { className: 'section-title' },
-          React.createElement(SectionBadge, { text: 'Our Portfolio', icon: 'hammer' }),
           React.createElement('h2', null, 'Projects We Have Done')
         ),
         React.createElement(
           'div',
           { className: 'projects-tabs', 'aria-label': 'Project filters' },
-          React.createElement('button', { className: 'tab active', type: 'button' }, 'All'),
-          React.createElement('button', { className: 'tab', type: 'button' }, 'Bathroom'),
-          React.createElement('button', { className: 'tab', type: 'button' }, 'Kitchen'),
-          React.createElement('button', { className: 'tab', type: 'button' }, 'Plumbing')
+          filterTabs.map(function (tab) {
+            return React.createElement(
+              'button',
+              {
+                key: tab,
+                className: 'portfolio-tab' + (activeFilter === tab ? ' active' : ''),
+                type: 'button',
+                onClick: function () { setActiveFilter(tab); }
+              },
+              tab
+            );
+          })
         ),
         React.createElement(
           'div',
-          { className: 'project-grid' },
-          projects.map(function (project) {
-            return React.createElement(
-              'article',
-              { className: 'project-card', key: project.title },
-              React.createElement('img', { src: project.image, alt: project.title }),
-              React.createElement(
-                'div',
-                { className: 'meta' },
-                React.createElement('strong', null, project.title),
-                React.createElement('span', { className: 'project-badge' }, project.badge)
-              )
-            );
-          })
+          { className: 'projects-slider' },
+          React.createElement(
+            'div',
+            { className: 'projects-track' },
+            React.createElement('div', { className: 'projects-row' }, projectsRow1.map(renderPortfolioCard)),
+            React.createElement('div', { className: 'projects-row' }, projectsRow2.map(renderPortfolioCard))
+          )
         )
       ),
       React.createElement(

@@ -62,11 +62,37 @@ const steps = [
   { title: 'Final Quality Check & Support', text: 'We test every repair, review the finished result, and leave you with total confidence in the service delivered.', tag: 'Step 04', icon: 'bolt' }
 ];
 
-const projects = [
-  { title: 'Bathroom Remodel', badge: 'Bathroom', image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=900&q=80' },
-  { title: 'Kitchen Refresh', badge: 'Kitchen', image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=80' },
-  { title: 'Plumbing Upgrade', badge: 'Plumbing', image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80' },
-  { title: 'Interior Renovation', badge: 'Remodel', image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80' }
+const filterTabs = ['All Works', 'Clog Cleaning', 'Installation', 'Kitchen Plumbing', 'Repair'];
+
+const projectsRow1 = [
+  { id: 'r1-1', type: 'image', image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80', alt: 'Kitchen Sink' },
+  { id: 'r1-2', type: 'image', image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80', alt: 'Plumbing Valves' },
+  { id: 'r1-3', type: 'image', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80', alt: 'Modern Living Room' },
+  { id: 'r1-4', type: 'image', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80', alt: 'Modern Kitchen' },
+  { id: 'r1-5', type: 'image', image: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=600&q=80', alt: 'Under Sink Plumbing' },
+  { id: 'r1-6', type: 'image', image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80', alt: 'Plumbing Valves' },
+  { id: 'r1-7', type: 'image', image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80', alt: 'Interior' }
+];
+
+const projectsRow2 = [
+  { id: 'r2-1', type: 'image', image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80', alt: 'Electrical Panel' },
+  { id: 'r2-2', type: 'blue', category: 'Installation, Kitchen Plumbing', title: 'Kitchen Plumbing' },
+  { id: 'r2-3', type: 'image', image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=600&q=80', alt: 'Kitchen Island' },
+  { 
+    id: 'r2-4', 
+    type: 'info', 
+    heading: 'Over 15+ Years Experience, Our Team Provides Top-Quality Services', 
+    image: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=400&q=80',
+    stats: [
+      { num: '15+', label: 'Experience' },
+      { num: '1500+', label: 'Completed' },
+      { num: '98%+', label: 'Satisfaction' },
+      { num: '24/7', label: 'Support' }
+    ]
+  },
+  { id: 'r2-5', type: 'image', image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80', alt: 'Electrician' },
+  { id: 'r2-6', type: 'blue', category: 'Installation, Kitchen Plumbing', title: 'Kitchen Plumbing' },
+  { id: 'r2-7', type: 'image', image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80', alt: 'Interior' }
 ];
 
 const testimonials = [
@@ -85,7 +111,51 @@ function SectionBadge({ text, icon = 'wrench' }) {
   );
 }
 
+function ScriptText({ children }) {
+  return <span className="highlight-script">{children}</span>;
+}
+
+function renderPortfolioCard(item) {
+  if (item.type === 'blue') {
+    return (
+      <div className="portfolio-card card-blue" key={item.id}>
+        <span className="card-category">{item.category}</span>
+        <h3 className="card-title">{item.title}</h3>
+      </div>
+    );
+  }
+  if (item.type === 'info') {
+    return (
+      <div className="portfolio-card card-info" key={item.id}>
+        <div className="info-top">
+          <div className="info-text">
+            <p>{item.heading}</p>
+          </div>
+          <div className="info-img">
+            <img src={item.image} alt="Technician" />
+          </div>
+        </div>
+        <div className="info-stats-grid">
+          {item.stats.map((st, idx) => (
+            <div className="info-stat-item" key={idx}>
+              <strong>{st.num}</strong>
+              <span>{st.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="portfolio-card card-image" key={item.id}>
+      <img src={item.image} alt={item.alt} />
+    </div>
+  );
+}
+
 function App() {
+  const [activeFilter, setActiveFilter] = React.useState('All Works');
+
   return (
     <div className="page-shell">
       <header className="topbar">
@@ -178,7 +248,7 @@ function App() {
         <section className="services section">
           <div className="section-title">
             <SectionBadge text="Our Services" icon="wrench" />
-            <h2>Our Expertise: <span className="highlight-script">Quality</span> Handyman Solutions</h2>
+            <h2>Our Expertise: <ScriptText>Quality</ScriptText> Handyman Solutions</h2>
             <p>
               At Quick Replace, we provide comprehensive property maintenance and emergency trade solutions.
               From minor repairs to emergency make-safe works, our licensed multi-trade specialists are on call 24/7.
@@ -214,7 +284,7 @@ function App() {
         <section className="how-it-works section">
           <div className="section-title">
             <SectionBadge text="How It Works" icon="bolt" />
-            <h2>How It Works: Seamless Service in 4 Simple Steps</h2>
+            <h2>How It Works: <ScriptText>Seamless Service</ScriptText> in 4 Simple Steps</h2>
           </div>
 
           <div className="steps-wrap">
@@ -246,7 +316,14 @@ function App() {
             <p>
               We pride ourselves on a smooth process, clear communication, and dependable workmanship that helps homeowners and businesses keep operations running safely.
             </p>
-            <button className="primary-btn" type="button">About us</button>
+            <button className="outline-btn" type="button">
+              <span className="btn-icon-circle">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#3e6bf3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </span>
+              <span>About us</span>
+            </button>
           </div>
 
           <div className="about-image">
@@ -256,34 +333,34 @@ function App() {
 
         <section className="projects section">
           <div className="section-title">
-            <SectionBadge text="Our Portfolio" icon="hammer" />
             <h2>Projects We Have Done</h2>
           </div>
 
           <div className="projects-tabs" aria-label="Project filters">
-            <button className="tab active" type="button">All</button>
-            <button className="tab" type="button">Bathroom</button>
-            <button className="tab" type="button">Kitchen</button>
-            <button className="tab" type="button">Plumbing</button>
+            {filterTabs.map((tab) => (
+              <button
+                key={tab}
+                className={`portfolio-tab${activeFilter === tab ? ' active' : ''}`}
+                type="button"
+                onClick={() => setActiveFilter(tab)}
+              >
+                {tab}
+              </button>
+            ))}
           </div>
 
-          <div className="project-grid">
-            {projects.map((project) => (
-              <article className="project-card" key={project.title}>
-                <img src={project.image} alt={project.title} />
-                <div className="meta">
-                  <strong>{project.title}</strong>
-                  <span className="project-badge">{project.badge}</span>
-                </div>
-              </article>
-            ))}
+          <div className="projects-slider">
+            <div className="projects-track">
+              <div className="projects-row">{projectsRow1.map(renderPortfolioCard)}</div>
+              <div className="projects-row">{projectsRow2.map(renderPortfolioCard)}</div>
+            </div>
           </div>
         </section>
 
         <section className="testimonials section">
           <div className="section-title">
             <SectionBadge text="Testimonials" icon="check" />
-            <h2>What Our Clients Say</h2>
+            <h2>What Our <ScriptText>Clients</ScriptText> Say</h2>
           </div>
 
           <div className="testimonial-grid">
