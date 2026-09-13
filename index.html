@@ -144,8 +144,34 @@
       .service-card p { margin: 0 0 18px; color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
       .service-card .link { display: inline-flex; align-items: center; gap: 8px; color: var(--secondary); font-size: 0.8rem; font-weight: 700; }
       .link-arrow { width: 18px; height: 18px; display: inline-grid; place-items: center; border-radius: 50%; background: rgba(24,79,122,0.08); font-size: 0.9rem; }
-      .services-cta { text-align: center; margin-top: 28px; }
-      .outline-btn { background: #0c2139; color: white; padding-left: 22px; padding-right: 22px; }
+      .services-cta { text-align: center; margin-top: 50px; }
+      .outline-btn {
+        background: #3e6bf3;
+        color: white;
+        padding: 11px 30px 11px 30px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 999px;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        box-shadow: 0 10px 24px rgba(62, 107, 243, 0.28);
+        cursor: pointer;
+      }
+      .btn-icon-circle {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #ffffff;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+      }
+      .btn-icon-circle svg {
+        fill: #3e6bf3;
+        margin-left: 2px;
+      }
       .how-it-works { max-width: 1200px; margin: 90px auto 0; }
       .steps-wrap { display: grid; grid-template-columns: 1.25fr 1fr 1fr 1fr; gap: 20px; align-items: stretch; }
       .step-feature { background: linear-gradient(145deg, rgba(8,26,41,0.96), rgba(16,38,57,0.92)); border-radius: 22px; padding: 26px 24px 26px 22px; color: white; min-height: 210px; position: relative; overflow: hidden; box-shadow: var(--shadow); }

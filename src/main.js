@@ -198,7 +198,24 @@ function App() {
             );
           })
         ),
-        React.createElement('div', { className: 'services-cta' }, React.createElement('button', { className: 'outline-btn', type: 'button' }, 'View all services'))
+        React.createElement(
+          'div',
+          { className: 'services-cta' },
+          React.createElement(
+            'button',
+            { className: 'outline-btn', type: 'button' },
+            React.createElement(
+              'span',
+              { className: 'btn-icon-circle' },
+              React.createElement(
+                'svg',
+                { viewBox: '0 0 24 24', width: '12', height: '12', fill: '#3e6bf3', 'aria-hidden': 'true' },
+                React.createElement('polygon', { points: '7 4 19 12 7 20 7 4' })
+              )
+            ),
+            React.createElement('span', null, 'View all services')
+          )
+        )
       ),
       React.createElement(
         'section',

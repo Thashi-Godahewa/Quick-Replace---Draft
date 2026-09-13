@@ -200,7 +200,14 @@ function App() {
           </div>
 
           <div className="services-cta">
-            <button className="outline-btn" type="button">View all services</button>
+            <button className="outline-btn" type="button">
+              <span className="btn-icon-circle">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="#3e6bf3" aria-hidden="true">
+                  <polygon points="7 4 19 12 7 20 7 4" />
+                </svg>
+              </span>
+              <span>View all services</span>
+            </button>
           </div>
         </section>
 

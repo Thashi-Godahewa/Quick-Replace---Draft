@@ -435,10 +435,33 @@ h1 {
 }
 
 .outline-btn {
-  background: #0c2139;
+  background: #3e6bf3;
   color: white;
-  padding-left: 22px;
-  padding-right: 22px;
+  padding: 8px 30px 8px 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 999px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 10px 24px rgba(62, 107, 243, 0.28);
+  cursor: pointer;
+}
+
+.btn-icon-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.btn-icon-circle svg {
+  fill: #3e6bf3;
+  margin-left: 2px;
 }
 
 .how-it-works {
