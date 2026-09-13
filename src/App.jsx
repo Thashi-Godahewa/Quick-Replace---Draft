@@ -76,6 +76,15 @@ const testimonials = [
   { name: 'James R.', role: 'Landlord', quote: 'Working with them was a great experience. The team was punctual, skilled, and the finish was clean and professional.' }
 ];
 
+function SectionBadge({ text, icon = 'wrench' }) {
+  return (
+    <div className="section-badge">
+      {iconMap[icon] || null}
+      <span>{text}</span>
+    </div>
+  );
+}
+
 function App() {
   return (
     <div className="page-shell">
@@ -168,10 +177,11 @@ function App() {
 
         <section className="services section">
           <div className="section-title">
-            <h2>Our Expertise: Quality Handyman Solutions</h2>
+            <SectionBadge text="Our Services" icon="wrench" />
+            <h2>Our Expertise: <span className="highlight-script">Quality</span> Handyman Solutions</h2>
             <p>
-              From plumbing and electrical repairs to painting, glazing, and locksmith work, our team delivers dependable property solutions
-              for homes, offices, and commercial spaces.
+              At Quick Replace, we provide comprehensive property maintenance and emergency trade solutions.
+              From minor repairs to emergency make-safe works, our licensed multi-trade specialists are on call 24/7.
             </p>
           </div>
 
@@ -196,6 +206,7 @@ function App() {
 
         <section className="how-it-works section">
           <div className="section-title">
+            <SectionBadge text="How It Works" icon="bolt" />
             <h2>How It Works: Seamless Service in 4 Simple Steps</h2>
           </div>
 
@@ -238,7 +249,8 @@ function App() {
 
         <section className="projects section">
           <div className="section-title">
-            <h2>Projects we have done</h2>
+            <SectionBadge text="Our Portfolio" icon="hammer" />
+            <h2>Projects We Have Done</h2>
           </div>
 
           <div className="projects-tabs" aria-label="Project filters">
@@ -263,6 +275,7 @@ function App() {
 
         <section className="testimonials section">
           <div className="section-title">
+            <SectionBadge text="Testimonials" icon="check" />
             <h2>What Our Clients Say</h2>
           </div>
 

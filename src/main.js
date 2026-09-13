@@ -76,6 +76,15 @@ const testimonials = [
   { name: 'James R.', role: 'Landlord', quote: 'Working with them was a great experience. The team was punctual, skilled, and the finish was clean and professional.' }
 ];
 
+function SectionBadge({ text, icon = 'wrench' }) {
+  return React.createElement(
+    'div',
+    { className: 'section-badge' },
+    iconMap[icon] || null,
+    React.createElement('span', null, text)
+  );
+}
+
 function App() {
   return React.createElement(
     'div',
@@ -165,8 +174,15 @@ function App() {
         React.createElement(
           'div',
           { className: 'section-title' },
-          React.createElement('h2', null, 'Our Expertise: Quality Handyman Solutions'),
-          React.createElement('p', null, 'From plumbing and electrical repairs to painting, glazing, and locksmith work, our team delivers dependable property solutions for homes, offices, and commercial spaces.')
+          React.createElement(SectionBadge, { text: 'Our Services', icon: 'wrench' }),
+          React.createElement(
+            'h2',
+            null,
+            'Our Expertise: ',
+            React.createElement('span', { className: 'highlight-script' }, 'Quality'),
+            ' Handyman Solutions'
+          ),
+          React.createElement('p', null, 'At Quick Replace, we provide comprehensive property maintenance and emergency trade solutions. From minor repairs to emergency make-safe works, our licensed multi-trade specialists are on call 24/7.')
         ),
         React.createElement(
           'div',
@@ -187,7 +203,12 @@ function App() {
       React.createElement(
         'section',
         { className: 'how-it-works section' },
-        React.createElement('div', { className: 'section-title' }, React.createElement('h2', null, 'How It Works: Seamless Service in 4 Simple Steps')),
+        React.createElement(
+          'div',
+          { className: 'section-title' },
+          React.createElement(SectionBadge, { text: 'How It Works', icon: 'bolt' }),
+          React.createElement('h2', null, 'How It Works: Seamless Service in 4 Simple Steps')
+        ),
         React.createElement(
           'div',
           { className: 'steps-wrap' },
@@ -230,7 +251,12 @@ function App() {
       React.createElement(
         'section',
         { className: 'projects section' },
-        React.createElement('div', { className: 'section-title' }, React.createElement('h2', null, 'Projects we have done')),
+        React.createElement(
+          'div',
+          { className: 'section-title' },
+          React.createElement(SectionBadge, { text: 'Our Portfolio', icon: 'hammer' }),
+          React.createElement('h2', null, 'Projects We Have Done')
+        ),
         React.createElement(
           'div',
           { className: 'projects-tabs', 'aria-label': 'Project filters' },
@@ -260,7 +286,12 @@ function App() {
       React.createElement(
         'section',
         { className: 'testimonials section' },
-        React.createElement('div', { className: 'section-title' }, React.createElement('h2', null, 'What Our Clients Say')),
+        React.createElement(
+          'div',
+          { className: 'section-title' },
+          React.createElement(SectionBadge, { text: 'Testimonials', icon: 'check' }),
+          React.createElement('h2', null, 'What Our Clients Say')
+        ),
         React.createElement(
           'div',
           { className: 'testimonial-grid' },
